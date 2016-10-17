@@ -10,10 +10,20 @@
 					<div class="center">
             <h1>Audio Scraper</h1>
 						<h2>Start a New Scrape</h2>
-            <form class="scraper-inputs">
-                <input id="input_url" class="input-url" type="text" placeholder="enter a url" value="http://www.mmo-champion.com/threads/2069857-Patch-7-1-PTR-Build-22578-Music?p=42335821#post42335821" autofocus />
-                <button id="input_submit" class="input-submit">Scrape</button>
+            <form id="form_new_scrape" class="form-new-scrape">
+                <input id="input_url" class="input-url" type="text" placeholder="enter a url" value="http://www.cnn.com" autofocus />
+                <button type="submit" id="input_submit" class="input-submit">Scrape</button>
             </form>
+						<a onclick="app.insertExample('http://www.mmo-champion.com/threads/2069857-Patch-7-1-PTR-Build-22578-Music')">Example 1</a>
+						<a onclick="app.insertExample('http://www.mmo-champion.com/content/477-Legion-Music')">Example 2</a>
+						<h2>Tracks</h2>
+						<ul id="tracks">
+							<script type="text/template" class="template">
+								<li class="track">
+									<%- track.url %>
+								</li>
+							</script>
+						</ul>
 						<h2>Your Scrape History</h2>
 					</div>
 				</div>
