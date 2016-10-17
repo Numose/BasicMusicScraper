@@ -1,0 +1,14 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, div {
+    margin: 0;
+}
+
+div.center {
+    overflow: hidden;
+    width: 1280px;
+    margin: 0 auto;
+}
