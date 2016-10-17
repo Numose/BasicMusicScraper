@@ -1,0 +1,20 @@
+{
+  "name": "Basic Node.js Music Scraper",
+  "description": "A basic audio tag music scraper using Node.js",
+  "main": "",
+  "authors": [
+    "Andrew Cernek <andrew.cernek@gmail.com>"
+  ],
+  "license": "UNLICENSED",
+  "homepage": "https://github.com/Numose/BasicMusicScraper",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "underscore": "^1.8.3"
+  }
+}
