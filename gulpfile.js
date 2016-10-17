@@ -26,7 +26,11 @@ gulp.task('sass', function() {
 
 // Concatenate & Minify JS
 gulp.task('scripts', function() {
-    return gulp.src(['bower_components/jquery/dist/jquery.min.js', 'bower_components/underscore/underscore-min.js'])
+    return gulp.src([
+            'bower_components/jquery/dist/jquery.min.js',
+            'bower_components/underscore/underscore-min.js',
+            'assets/js/app.js'
+        ])
         .pipe(concat('scripts.js'))
         .pipe(gulp.dest('public/js'))
         .pipe(rename('scripts.min.js'))
@@ -36,7 +40,7 @@ gulp.task('scripts', function() {
 
 // Watch Files For Changes
 gulp.task('watch', function() {
-    gulp.watch('js/*.js', ['lint', 'scripts']);
+    gulp.watch('assets/js/*.js', ['lint', 'scripts']);
     gulp.watch('assets/scss/*.scss', ['sass']);
 });
 

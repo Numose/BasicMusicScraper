@@ -3,11 +3,26 @@
     <head>
         <title>Basic Node.js Audio Scraper</title>
         <link rel="stylesheet" type="text/css" href="/styles">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     </head>
     <body>
-        <div class="main center">
+        <div class="main">
+					<div class="center">
             <h1>Audio Scraper</h1>
-        </div>
-        <script src="/scripts"></script>
+						<h2>Start a New Scrape</h2>
+            <form class="scraper-inputs">
+                <input id="input_url" class="input-url" type="text" placeholder="enter a url" value="http://www.mmo-champion.com/threads/2069857-Patch-7-1-PTR-Build-22578-Music?p=42335821#post42335821" autofocus />
+                <button id="input_submit" class="input-submit">Scrape</button>
+            </form>
+						<h2>Your Scrape History</h2>
+					</div>
+				</div>
+        
+				<script src="/scripts"></script>
+        <script>
+            $(function() {
+                app.init();
+            });
+        </script>
     </body>
 </html>
