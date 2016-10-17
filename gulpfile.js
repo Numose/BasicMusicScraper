@@ -1,3 +1,5 @@
+'use strict';
+
 // Include gulp
 var gulp = require('gulp');
 
@@ -18,7 +20,7 @@ gulp.task('lint', function() {
 // Compile Our Sass
 gulp.task('sass', function() {
     return gulp.src('assets/scss/*.scss')
-        .pipe(sass({ style: 'compressed' }).on('error', sass.logError))
+        .pipe(sass({outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(gulp.dest('public/css'));
 });
 
