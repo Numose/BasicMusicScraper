@@ -14,7 +14,7 @@ var app = {
 		_.each(data, function(elem) { $('#tracks').append(app.template(elem)); });
 	},
 
-	getHtml: function(url) {
+	getTrackListing: function(url) {
 		$.ajax({
 			url: '/scrape',
 			type: 'GET',
@@ -48,4 +48,5 @@ var app = {
 $('form#form_new_scrape').on('submit', function(e){
 	e.preventDefault();
 	var url = $('input#input_url').val();
+	app.getTrackListing(url);
 });

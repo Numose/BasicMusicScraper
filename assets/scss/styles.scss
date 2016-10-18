@@ -75,6 +75,9 @@ h2 {
 			margin: 0 0 0 24px;
 			font-size: 16px;
 		}
+	audio {
+		float: right;
+	}
 }
 
 input.input-url, button.input-submit {
@@ -94,7 +97,6 @@ input.input-url {
 }
 
 button.input-submit {
-    width: 125px;
 		background: $grey25;
 		font-size: 18px;
 		font-weight: 600;
@@ -107,7 +109,7 @@ button.input-submit {
 /* specific blocks */
 
 div.main {
-    padding: 48px 0;
+    padding: 36px 0;
 }
 
 div.sector-search {

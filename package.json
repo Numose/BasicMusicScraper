@@ -12,6 +12,8 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "async": "^2.1.2",
+    "async-series": "0.0.1",
     "body-parser": "^1.15.2",
     "bower": "^1.7.9",
     "cheerio": "^0.22.0",
