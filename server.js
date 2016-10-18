@@ -33,31 +33,30 @@ app.get('/scrape', function(req, res) {
 
       var tracks = [];
 
-      // TODO: remove temp data
-      tracks = [
-        {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_01.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_01.mp3"},
-        {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_02.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_02.mp3"},
-        {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_03.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_03.mp3"},
-        {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_04.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_04.mp3"},
-        {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Orchestra)_01.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Orchestra)_01.mp3"}
-      ];
+      // // mock data
+      // tracks = [
+      //   {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_01.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_01.mp3"},
+      //   {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_02.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_02.mp3"},
+      //   {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_03.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_03.mp3"},
+      //   {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_04.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_04.mp3"},
+      //   {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Orchestra)_01.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Orchestra)_01.mp3"}
+      // ];
 
-      // const $ = cheerio.load(html);
+      const $ = cheerio.load(html);
 
-      // $('body').find('audio').each(function(idx, elem) {
-      //   var title = elem.attribs.src.split('\/');
-      //   title = title[title.length - 1];
-      //   tracks.push({
-      //     url: elem.attribs.src,
-      //     title: title,
-      //     download: true
-      //   });
-      // });
+      $('body').find('audio').each(function(idx, elem) {
+        var title = elem.attribs.src.split('\/');
+        title = title[title.length - 1];
+        tracks.push({
+          url: elem.attribs.src,
+          title: title
+        });
+      });
 
       res.json(tracks);
 
     } else {
-      console.log('Error when requesting html', error);
+      console.log('error fetching html: ', error);
     }
   });
 });
@@ -69,15 +68,13 @@ app.post('/scrape', function(req, res) {
   });
   var downloads = filteredTracks.map(function(elem) {
     return function(done) {
-      // // TODO: comment this back in for final
-      // request.get(elem.url)
-      //   .pipe(fs.createWriteStream(__dirname + '/public/downloads/' + elem.title));
-      console.log(elem.url);
+      request.get(elem.url)
+        .pipe(fs.createWriteStream(__dirname + '/public/downloads/' + elem.title));
       done();
     };
   });
   asyncseries(downloads, function(err) {
-    if (err) console.log(err);
+    if (err) console.log('failed to download: ', err);
   });
   res.status(200);
 });

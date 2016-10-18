@@ -125,8 +125,7 @@ div.sector-search {
 
 div.results-header {
 	overflow: hidden;
-	// TODO: remove this comment before final
-	// display: none;
+	display: none;
 	margin-bottom: 24px;
 	padding: 8px 16px;
 	border: 1px solid $grey75;
@@ -197,7 +196,7 @@ ul.tracks {
 		}
 		&:hover {
 			i {
-				color: $grey75;
+				color: darken($pink, 10%);
 			}
 		}
 	}

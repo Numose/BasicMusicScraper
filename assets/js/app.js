@@ -85,10 +85,11 @@ $('form#form_new_scrape').on('submit', function(e){
 });
 
 $('body').on('change', 'input[type="checkbox"]', function(e) {
-	var trackId = $(this).val();
+	var thisThis = $(this);
+	var trackId = $(thisThis).val();
 	_.each(app.tracks, function(elem) {
 		if (trackId == elem.id) {
-			elem.download = ( $(this).prop('checked') ? true : false );
-		} 
+			elem.download = ( $(thisThis).prop('checked') ? true : false );
+		}
 	});
 });
