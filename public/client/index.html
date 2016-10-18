@@ -32,8 +32,10 @@
               <ul id="tracks" class="tracks">
                   <script type="text/template" class="template">
                       <li class="track">
-                        <span><%- track.title %></span>
-                        <a href="<%- track.url %>" target="_blank"><i class="fa fa-music"></i><%- track.url %></a>
+                        <div>
+                            <span><input type="checkbox" name="downloads" value="<%- track.id %>"<% if (track.download) { %> checked <% } %> /><%- track.title %></span>
+                            <a href="<%- track.url %>" target="_blank"><i class="fa fa-music"></i><%- track.url %></a>
+                        </div>
                       </li>
                   </script>
               </ul>

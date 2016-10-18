@@ -1,4 +1,7 @@
 var app = {
+
+	tracks: [],
+
 	init: function() {
 		_.templateSettings.variable = 'track'; 
 			app.template = _.template(
@@ -10,8 +13,22 @@ var app = {
 		$('input#input_url').val(url);
 	},
 
-	renderTracks: function(data) {
-		_.each(data, function(elem) { $('#tracks').append(app.template(elem)); });
+	generateTrackId: function() {
+		return Math.random() * 1000000000000000000;
+	},
+
+	saveTracks: function(data) {
+		_.each(data, function(elem) {
+			elem.id = app.generateTrackId();
+			elem.download = true;
+			app.tracks.push(elem);
+		});
+	},
+
+	renderTracks: function() {
+		_.each(app.tracks, function(elem) {
+			$('#tracks').append(app.template(elem));
+		});
 	},
 
 	getTrackListing: function(url) {
@@ -20,7 +37,8 @@ var app = {
 			type: 'GET',
 			data: {url: url},
 			success: function(data) {
-				app.renderTracks(data);
+				app.saveTracks(data);
+				app.renderTracks();
 			},
 			error: function(err) {
 				console.error(err);
@@ -49,4 +67,14 @@ $('form#form_new_scrape').on('submit', function(e){
 	e.preventDefault();
 	var url = $('input#input_url').val();
 	app.getTrackListing(url);
+});
+
+$('body').on('change', 'input[type="checkbox"]', function(e) {
+	var trackId = $(this).val();
+	_.each(app.tracks, function(elem) {
+		if (trackId == elem.id) {
+			elem.download = ( $(this).prop('checked') ? true : false );
+		} 
+	});
+	console.log(app.tracks);
 });
