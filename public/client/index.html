@@ -4,31 +4,35 @@
         <title>Basic Node.js Audio Scraper</title>
         <link rel="stylesheet" type="text/css" href="/styles">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     </head>
     <body>
         <div class="main">
 					<div class="center">
             <h1>Audio Scraper</h1>
-						<h2>Start a New Scrape</h2>
+						
+		    <h2>Start a New Scrape</h2>
             <form id="form_new_scrape" class="form-new-scrape">
                 <input id="input_url" class="input-url" type="text" placeholder="enter a url" value="http://www.cnn.com" autofocus />
                 <button type="submit" id="input_submit" class="input-submit">Scrape</button>
             </form>
-						<a onclick="app.insertExample('http://www.mmo-champion.com/threads/2069857-Patch-7-1-PTR-Build-22578-Music')">Example 1</a>
-						<a onclick="app.insertExample('http://www.mmo-champion.com/content/477-Legion-Music')">Example 2</a>
-						<h2>Tracks</h2>
-						<ul id="tracks">
-							<script type="text/template" class="template">
-								<li class="track">
-									<%- track.url %>
-								</li>
-							</script>
-						</ul>
-						<h2>Your Scrape History</h2>
-					</div>
-				</div>
+            <a onclick="app.insertExample('http://www.mmo-champion.com/threads/2069857-Patch-7-1-PTR-Build-22578-Music')">Example 1</a>
+            <a onclick="app.insertExample('http://www.mmo-champion.com/content/477-Legion-Music')">Example 2</a>
+                
+            <h2>Tracks</h2>
+            <ul id="tracks" class="tracks">
+                <script type="text/template" class="template">
+                    <li class="track">
+                        <a href="<%- track.url %>" target="_blank"><i class="fa fa-music"></i><%- track.url %></a>
+                    </li>
+                </script>
+            </ul>
+            
+            <h2>Your Scrape History</h2>
+            
+        </div>
         
-				<script src="/scripts"></script>
+		<script src="/scripts"></script>
         <script>
             $(function() {
                 app.init();

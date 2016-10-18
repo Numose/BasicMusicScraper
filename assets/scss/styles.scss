@@ -61,3 +61,14 @@ button.input-submit {
 div.main {
     padding: 48px 0;
 }
+
+ul.tracks {
+	overflow: hidden;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	li {
+		overflow: hidden;
+		padding: 5px 8px;
+	}
+}

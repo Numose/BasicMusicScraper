@@ -1,7 +1,7 @@
 var app = {
 	init: function() {
 		_.templateSettings.variable = 'track'; 
-			var template = _.template(
+			app.template = _.template(
 			$('script.template').html()
 		);
 	},
@@ -9,7 +9,7 @@ var app = {
 		$('input#input_url').val(url);
 	},
 	renderTracks: function(data) {
-		_.each(data, function(elem) { $('#tracks').prepend(template(elem)); });
+		_.each(data, function(elem) { $('#tracks').prepend(app.template(elem)); });
 	},
 	getHtml: function(url) {
 		$.ajax({
@@ -17,7 +17,7 @@ var app = {
 			type: 'GET',
 			data: {url: url},
 			success: function(data) {
-				this.renderTracks(data);
+				app.renderTracks(data);
 			},
 			error: function(err) {
 				console.error(err);
