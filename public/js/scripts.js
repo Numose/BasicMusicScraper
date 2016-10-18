@@ -72,7 +72,6 @@ var app = {
 };
 
 // // // event listeners // // //
-
 $('form#form_new_scrape').on('submit', function(e){
 	e.preventDefault();
 	var url = $('input#input_url').val();

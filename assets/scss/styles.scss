@@ -128,8 +128,33 @@ ul.tracks {
 		margin: 0 0 8px 0;
 		padding: 8px 0;
 	}
-	input[type="select"] {
-		float: left;
+	input[type="checkbox"] {
+		display: none;
+	}
+	input[type="checkbox"] + label {
+		overflow: hidden;
+		i {
+			margin: 0 12px 0 0;
+			line-height: 48px;
+			font-size: 36px;
+			color: $grey50;
+			cursor: pointer;
+		}
+	}
+	input[type="checkbox"]:checked + label {
+		i {
+			color: $pink;
+		}
+		label {
+			cursor: pointer;
+			&:hover {
+				input[type="checkbox"]:checked + label {
+					i {
+						color: $grey240;
+					}
+				}
+			}
+		}
 	}
 	div {
 		float: left;
@@ -141,8 +166,5 @@ ul.tracks {
 	}
 	a {
 		font-size: 13px;
-	}
-	i.fa {
-		margin: 0 8px 0 0;
 	}
 }

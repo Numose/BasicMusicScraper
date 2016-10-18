@@ -8,17 +8,11 @@ const bodyparser = require('body-parser');
 const cheerio = require('cheerio');
 const port = 8080;
 
-// middle-wares
-
+// // // middle-wares // // //
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 
-// console.log('==============');
-// console.log(elem);
-// console.log('==============');
-
-// routes
-
+// // // routes // // //
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/client/index.html'));
 });
@@ -39,26 +33,26 @@ app.get('/scrape', function(req, res) {
 
       var tracks = [];
 
-      // // TODO: remove temp data
-      // tracks = [
-      //   {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_01.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_01.mp3"},
-      //   {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_02.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_02.mp3"},
-      //   {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_03.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_03.mp3"},
-      //   {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_04.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_04.mp3"},
-      //   {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Orchestra)_01.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Orchestra)_01.mp3"}
-      // ];
+      // TODO: remove temp data
+      tracks = [
+        {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_01.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_01.mp3"},
+        {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_02.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_02.mp3"},
+        {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_03.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_03.mp3"},
+        {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_04.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_04.mp3"},
+        {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Orchestra)_01.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Orchestra)_01.mp3"}
+      ];
 
-      const $ = cheerio.load(html);
+      // const $ = cheerio.load(html);
 
-      $('body').find('audio').each(function(idx, elem) {
-        var title = elem.attribs.src.split('\/');
-        title = title[title.length - 1];
-        tracks.push({
-          url: elem.attribs.src,
-          title: title,
-          download: true
-        });
-      });
+      // $('body').find('audio').each(function(idx, elem) {
+      //   var title = elem.attribs.src.split('\/');
+      //   title = title[title.length - 1];
+      //   tracks.push({
+      //     url: elem.attribs.src,
+      //     title: title,
+      //     download: true
+      //   });
+      // });
 
       res.json(tracks);
 
@@ -75,8 +69,10 @@ app.post('/scrape', function(req, res) {
   });
   var downloads = filteredTracks.map(function(elem) {
     return function(done) {
-      request.get(elem.url)
-        .pipe(fs.createWriteStream(__dirname + '/public/downloads/' + elem.title));
+      // // TODO: comment this back in for final
+      // request.get(elem.url)
+      //   .pipe(fs.createWriteStream(__dirname + '/public/downloads/' + elem.title));
+      console.log(elem.url);
       done();
     };
   });
@@ -86,10 +82,8 @@ app.post('/scrape', function(req, res) {
   res.status(200);
 });
 
-// app.get('/downloads', function(req, res) {
-// 	res.sendFile(path.join(__dirname + '/public/client/downloads.html'));
-// });
 
+// // // init // // //
 app.listen(port, function () {
   console.log('Express.js listening on port', port);
 });

@@ -7,48 +7,52 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     </head>
     <body>
-        <div class="main">
-          
-          <div class="sector sector-search">
-            <div class="center">
-              <h1>Audio<span>File</span></h1>
-              
-              <h2>
-                Start a New Search
-                <a onclick="app.insertExample('http://www.mmo-champion.com/threads/2069857-Patch-7-1-PTR-Build-22578-Music')">Example 1</a>
-                <a onclick="app.insertExample('http://www.mmo-champion.com/content/477-Legion-Music')">Example 2</a>
-                <a onclick="app.insertExample('')">Clear</a>
-              </h2>
-              <form id="form_new_scrape" class="form-new-scrape">
-                  <input id="input_url" class="input-url" type="text" placeholder="enter a url" value="http://www.diablofans.com" autofocus />
-                  <button type="submit" id="input_submit" class="input-submit">Get Tracks</button>
-              </form>
-            </div>
-          </div> 
-          
-          <div class="sector sector-results">
-            <div class="center">
-              <h2>Tracks<button onClick="app.downloadTracks()">Download</button><audio src=""></audio></h2>
-              <ul id="tracks" class="tracks">
-                  <script type="text/template" class="template">
-                      <li class="track">
-                        <div>
-                            <span><input type="checkbox" name="downloads" value="<%- track.id %>"<% if (track.download) { %> checked <% } %> /><%- track.title %></span>
-                            <a href="<%- track.url %>" target="_blank"><i class="fa fa-music"></i><%- track.url %></a>
-                        </div>
-                      </li>
-                  </script>
-              </ul>
-              
-              <!-- <h2>Your Scrape History</h2> -->
-            </div>
-        </div>
+			<div class="main">
+				
+				<div class="sector sector-search">
+					<div class="center">
+						<h1>Audio<span>File</span></h1>
+						
+						<h2>
+							Start a New Search
+							<a onclick="app.insertExample('http://www.mmo-champion.com/threads/2069857-Patch-7-1-PTR-Build-22578-Music')">Example 1</a>
+							<a onclick="app.insertExample('http://www.mmo-champion.com/content/477-Legion-Music')">Example 2</a>
+							<a onclick="app.insertExample('')">Clear</a>
+						</h2>
+						<form id="form_new_scrape" class="form-new-scrape">
+								<input id="input_url" class="input-url" type="text" placeholder="enter a url" value="http://www.diablofans.com" autofocus />
+								<button type="submit" id="input_submit" class="input-submit">Get Tracks</button>
+						</form>
+					</div>
+				</div> 
+				
+				<div class="sector sector-results">
+					<div class="center">
+						<div class="results-header">
+							<h2>Tracks</h2>
+							<button onClick="app.downloadTracks()">Download</button>
+						</div>
+						<ul id="tracks" class="tracks">
+							<script type="text/template" class="template">
+								<li class="track">
+									<div>
+										<input type="checkbox" name="downloads" id="<%- track.id %>" value="<%- track.id %>"<% if (track.download) { %> checked <% } %> />
+										<label for="<%- track.id %>"><i class="fa fa-music"></i></label>
+									</div>
+									<div>
+											<span><%- track.title %></span>
+											<a href="<%- track.url %>" target="_blank"><%- track.url %></a>
+									</div>
+								</li>
+							</script>
+						</ul>
+					</div>
+
+			</div>
         
-		<script src="/scripts"></script>
+			<script src="/scripts"></script>
         <script>
-            $(function() {
-                app.init();
-            });
+            $(function() { app.init(); });
         </script>
     </body>
 </html>
