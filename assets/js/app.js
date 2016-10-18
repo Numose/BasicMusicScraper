@@ -48,6 +48,20 @@ var app = {
 		});
 	},
 
+	tracksRemoveAll: function() {
+		$('input[type="checkbox"]').prop('checked', false);
+		_.each(app.tracks, function(elem) {
+			elem.download = false;
+		});
+	},
+
+	tracksAddAll: function() {
+		$('input[type="checkbox"]').prop('checked', true);
+		_.each(app.tracks, function(elem) {
+			elem.download = true;
+		});
+	},
+
 	downloadTracks: function() {
 		$.ajax({
 			url: '/scrape',
