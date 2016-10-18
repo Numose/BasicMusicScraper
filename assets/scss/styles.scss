@@ -34,7 +34,7 @@ a, button {
 a {
 	color: $pink;
 	&:visited {
-		color: lighten($pink, 20%);
+		color: lighten($pink, 10%);
 	}
 	&:hover {
 		color: $grey255;
@@ -44,6 +44,10 @@ a {
 /* general elements */
 
 /* general blocks */
+
+div.sector {
+	overflow: hidden;
+}
 
 div.center {
     overflow: hidden;
@@ -66,10 +70,6 @@ h2 {
 			margin: 0 0 0 24px;
 			font-size: 16px;
 		}
-}
-
-form {
-	margin: 0 0 24px 0;
 }
 
 input.input-url, button.input-submit {
@@ -104,6 +104,12 @@ button.input-submit {
 
 div.main {
     padding: 48px 0;
+}
+
+div.sector-search {
+	margin: 0 0 36px 0;
+	padding: 0 0 36px 0;
+	border-bottom: 1px solid $grey50;
 }
 
 ul.tracks {

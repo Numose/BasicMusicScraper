@@ -8,31 +8,37 @@
     </head>
     <body>
         <div class="main">
-		      <div class="center">
-            <h1>Audio Scraper</h1>
-						
-            <h2>
-              Start a New Scrape
-              <a onclick="app.insertExample('http://www.mmo-champion.com/threads/2069857-Patch-7-1-PTR-Build-22578-Music')">Example 1</a>
-              <a onclick="app.insertExample('http://www.mmo-champion.com/content/477-Legion-Music')">Example 2</a>
-            </h2>
-            <form id="form_new_scrape" class="form-new-scrape">
-                <input id="input_url" class="input-url" type="text" placeholder="enter a url" value="http://www.cnn.com" autofocus />
-                <button type="submit" id="input_submit" class="input-submit">Scrape</button>
-            </form>
-                
-            <h2>Tracks</h2>
-            <ul id="tracks" class="tracks">
-                <script type="text/template" class="template">
-                    <li class="track">
-                      <span><%- track.title %></span>
-                      <a href="<%- track.url %>" target="_blank"><i class="fa fa-music"></i><%- track.url %></a>
-                    </li>
-                </script>
-            </ul>
-            
-            <h2>Your Scrape History</h2>
-          </div>
+          
+          <div class="sector sector-search">
+            <div class="center">
+              <h1>Audio Scraper</h1>
+              
+              <h2>
+                Start a New Scrape
+                <a onclick="app.insertExample('http://www.mmo-champion.com/threads/2069857-Patch-7-1-PTR-Build-22578-Music')">Example 1</a>
+                <a onclick="app.insertExample('http://www.mmo-champion.com/content/477-Legion-Music')">Example 2</a>
+              </h2>
+              <form id="form_new_scrape" class="form-new-scrape">
+                  <input id="input_url" class="input-url" type="text" placeholder="enter a url" value="http://www.reuters.com" autofocus />
+                  <button type="submit" id="input_submit" class="input-submit">Scrape</button>
+              </form>
+            </div>
+          </div> 
+          
+          <div class="sector sector-results">
+            <div class="center">
+              <h2>Tracks</h2>
+              <ul id="tracks" class="tracks">
+                  <script type="text/template" class="template">
+                      <li class="track">
+                        <span><%- track.title %></span>
+                        <a href="<%- track.url %>" target="_blank"><i class="fa fa-music"></i><%- track.url %></a>
+                      </li>
+                  </script>
+              </ul>
+              
+              <h2>Your Scrape History</h2>
+            </div>
         </div>
         
 		<script src="/scripts"></script>
