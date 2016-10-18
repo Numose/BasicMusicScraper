@@ -48,6 +48,8 @@ var app = {
 			type: 'GET',
 			data: {url: url},
 			success: function(data) {
+				app.tracks = [];
+				$('#tracks').html('');
 				app.saveTracks(data);
 				app.renderTracks();
 			},

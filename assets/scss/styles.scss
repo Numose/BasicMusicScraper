@@ -4,6 +4,7 @@ $grey255: rgb(255, 255, 255);
 $grey250: rgb(250, 250, 250);
 $grey245: rgb(245, 245, 245);
 $grey240: rgb(240, 240, 240);
+$grey75: rgb(75, 75, 75);
 $grey50: rgb(50, 50, 50);
 $grey25: rgb(25, 25, 25);
 
@@ -140,19 +141,19 @@ ul.tracks {
 			color: $grey50;
 			cursor: pointer;
 		}
+		&:hover {
+			i {
+				color: $grey75;
+			}
+		}
 	}
 	input[type="checkbox"]:checked + label {
 		i {
 			color: $pink;
 		}
-		label {
-			cursor: pointer;
-			&:hover {
-				input[type="checkbox"]:checked + label {
-					i {
-						color: $grey240;
-					}
-				}
+		&:hover {
+			i {
+				color: $grey75;
 			}
 		}
 	}
