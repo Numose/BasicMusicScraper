@@ -58,11 +58,10 @@ var app = {
 	},
 
 	downloadTracks: function() {
-		// TODO: arguments to accecpt url's; persist on backend somehow instead of passing back huge json thing?
 		$.ajax({
 			url: '/scrape',
 			type: 'POST',
-			data: {url: 'http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_KarazhanGameMansHall_Walk_01.mp3'},
+			data: {tracks: JSON.stringify(app.tracks)},
 			success: function(data) {
 			},
 			error: function(err) {
@@ -87,5 +86,4 @@ $('body').on('change', 'input[type="checkbox"]', function(e) {
 			elem.download = ( $(this).prop('checked') ? true : false );
 		} 
 	});
-	console.log(app.tracks);
 });
