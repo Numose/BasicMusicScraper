@@ -61,6 +61,9 @@ h1 {
     margin: 0 0 24px 0;
     line-height: 48px;
     font-size: 36px;
+		span {
+			color: $pink;
+		}
 }
 
 h2 {
@@ -95,8 +98,7 @@ button.input-submit {
 		font-weight: 600;
 		color: $pink;
 		&:hover {
-			background: darken($pink, 10%);
-			color: $grey255;
+			border-color: $pink;
 		}
 }
 
