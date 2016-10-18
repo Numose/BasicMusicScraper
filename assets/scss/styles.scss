@@ -1,17 +1,44 @@
+/* variables */
+
+$grey255: rgb(255, 255, 255);
+$grey240: rgb(240, 240, 240);
+$grey50: rgb(50, 50, 50);
+$grey25: rgb(25, 25, 25);
+
+$pink: rgb(233, 38, 108);
+
 /* resets, etc. */
 
 html, body {
     margin: 0;
     height: 100%;
     font-family: 'Raleway', sans-serif;
+		color: $grey255;
+}
+
+html {
+	background: $grey25;
 }
 
 h1, h2, h3, h4, h5, h6, div {
-    margin: 0;
+	overflow: hidden;
+  margin: 0;
 }
 
 a, button {
 	cursor: pointer;
+	outline: none;
+	text-decoration: none;
+}
+
+a {
+	color: $pink;
+	&:visited {
+		color: lighten($pink, 20%);
+	}
+	&:hover {
+		color: $grey255;
+	}
 }
 
 /* general elements */
@@ -34,6 +61,11 @@ h1 {
 
 h2 {
 	margin: 0 0 24px 0;
+
+	a {
+			margin: 0 0 0 24px;
+			font-size: 16px;
+		}
 }
 
 form {
@@ -41,19 +73,31 @@ form {
 }
 
 input.input-url, button.input-submit {
-    padding: 5px 8px;
-    line-height: 18px;
+    padding: 5px 24px;
+		border: 3px solid $grey255;
+		border-radius: 24px;
+		outline: none;
+    line-height: 36px;
     font-size: 16px;
+		color: $grey255;
 }
 
 input.input-url {
     width: 700px;
     margin-right: 12px;
-    
+		background: $grey50;
 }
 
 button.input-submit {
     width: 125px;
+		background: $grey25;
+		font-size: 18px;
+		font-weight: 600;
+		color: $pink;
+		&:hover {
+			background: darken($pink, 10%);
+			color: $grey255;
+		}
 }
 
 /* specific blocks */
@@ -69,6 +113,18 @@ ul.tracks {
 	padding: 0;
 	li {
 		overflow: hidden;
-		padding: 5px 8px;
+		margin: 0 0 8px 0;
+		padding: 8px 0;
+	}
+	span {
+		display: block;
+		line-height: 24px;
+		font-size: 16px;
+	}
+	a {
+		font-size: 13px;
+	}
+	i.fa {
+		margin: 0 8px 0 0;
 	}
 }

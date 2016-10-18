@@ -9,7 +9,7 @@ var app = {
 		$('input#input_url').val(url);
 	},
 	renderTracks: function(data) {
-		_.each(data, function(elem) { $('#tracks').prepend(app.template(elem)); });
+		_.each(data, function(elem) { $('#tracks').append(app.template(elem)); });
 	},
 	getHtml: function(url) {
 		$.ajax({
