@@ -1,6 +1,6 @@
 # AudioFile: A Basic Node.js Audio File Scraper #
 
-[screenshot of AudioFile in action](http://i.imgur.com/niKNFAf.png)
+![screenshot of AudioFile in action](http://i.imgur.com/niKNFAf.png)
 
 ## Summary ##
   I put together a really basic Node.js audio file scraper for a two-day hackathon. This tool works for sites with one or more embedded audio tags. Install the server locally, run it via terminal, navigate to localhost:8080 and profit!
