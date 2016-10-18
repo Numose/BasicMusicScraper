@@ -30,7 +30,9 @@
 					<div class="center">
 						<div class="results-header">
 							<h2>Tracks</h2>
-							<button onClick="app.downloadTracks()">Download</button>
+							<a onclick="app.tracksRemoveAll()">Remove All</a>
+							<a onclick="app.tracksAddAll()">Add All</a>
+							<button onClick="app.downloadTracks()"><i class="fa fa-download"></i>Download</button>
 						</div>
 						<ul id="tracks" class="tracks">
 							<script type="text/template" class="template">
