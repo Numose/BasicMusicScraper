@@ -38,4 +38,4 @@ jspm_packages
 .node_repl_history
 
 # downloaded audio files Directory
-public/downloads
+public/downloads/*.mp3
