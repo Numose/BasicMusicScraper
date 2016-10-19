@@ -42,4 +42,17 @@ workers.fetchHtml = function(url) {
   });
 };
 
+workers.downloadTracks = function(arr) {
+  var downloads = arr.map(function(elem) {
+    return function(done) {
+      request.get(elem.url)
+        .pipe(fs.createWriteStream(__dirname + '/public/downloads/' + elem.title));
+      done();
+    };
+  });
+  asyncseries(downloads, function(err) {
+    if (err) console.log('failed to download: ', err);
+  });
+};
+
 module.exports = workers;

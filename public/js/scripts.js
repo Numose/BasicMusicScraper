@@ -79,6 +79,7 @@ var app = {
 			type: 'POST',
 			data: {tracks: JSON.stringify(app.tracks)},
 			success: function(data) {
+				app.tracksRemoveAll();
 			},
 			error: function(err) {
 				console.error(err);

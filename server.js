@@ -1,13 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-/////////////////// moving these to utilities
-const fs = require('fs');
-const request = require('request');
-const asyncseries = require('async-series');
 const bodyparser = require('body-parser');
-const cheerio = require('cheerio');
-/////////////////////////////////////////////
 const promise = require('bluebird');
 const workers = require('./workers.js');
 const port = 8080;
@@ -30,7 +24,7 @@ app.get('/styles', function(req, res) {
 });
 
 app.get('/scrape', function(req, res) {
-
+  
   var sendTracks = function(arr) { res.json(arr); };
 
   workers.fetchHtml(req.query.url)
@@ -39,23 +33,15 @@ app.get('/scrape', function(req, res) {
 });
 
 app.post('/scrape', function(req, res) {
-  const postedTracks = JSON.parse(req.body.tracks);
-  const filteredTracks = postedTracks.filter(function(elem) {
+  
+  const tracks = JSON.parse(req.body.tracks).filter(function(elem) {
     return elem.download === true;
   });
-  var downloads = filteredTracks.map(function(elem) {
-    return function(done) {
-      request.get(elem.url)
-        .pipe(fs.createWriteStream(__dirname + '/public/downloads/' + elem.title));
-      done();
-    };
-  });
-  asyncseries(downloads, function(err) {
-    if (err) console.log('failed to download: ', err);
-  });
+  
+  workers.downloadTracks(tracks);
+  
   res.status(200);
 });
-
 
 // // // init // // //
 app.listen(port, function () {
