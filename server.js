@@ -1,11 +1,15 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+/////////////////// moving these to utilities
 const fs = require('fs');
 const request = require('request');
 const asyncseries = require('async-series');
 const bodyparser = require('body-parser');
 const cheerio = require('cheerio');
+/////////////////////////////////////////////
+const promise = require('bluebird');
+const workers = require('./workers.js');
 const port = 8080;
 
 // // // middle-wares // // //
@@ -27,38 +31,11 @@ app.get('/styles', function(req, res) {
 
 app.get('/scrape', function(req, res) {
 
-  // TODO: need to break this out into utils
-  request.get(req.query.url, function(error, response, html) {
-    if (!error) {
+  var sendTracks = function(arr) { res.json(arr); };
 
-      var tracks = [];
+  workers.fetchHtml(req.query.url)
+    .then(sendTracks);
 
-      // // mock data
-      // tracks = [
-      //   {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_01.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_01.mp3"},
-      //   {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_02.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_02.mp3"},
-      //   {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_03.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_03.mp3"},
-      //   {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_04.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Guitar)_04.mp3"},
-      //   {"url":"http://media.mmo-champion.com/images/news/2016/september/music/MUS_71_Event_DiabloAnniversary_TristramGuitar (Orchestra)_01.mp3","title":"MUS_71_Event_DiabloAnniversary_TristramGuitar (Orchestra)_01.mp3"}
-      // ];
-
-      const $ = cheerio.load(html);
-
-      $('body').find('audio').each(function(idx, elem) {
-        var title = elem.attribs.src.split('\/');
-        title = title[title.length - 1];
-        tracks.push({
-          url: elem.attribs.src,
-          title: title
-        });
-      });
-
-      res.json(tracks);
-
-    } else {
-      console.log('error fetching html: ', error);
-    }
-  });
 });
 
 app.post('/scrape', function(req, res) {
